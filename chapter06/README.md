@@ -70,7 +70,7 @@ More options
 
     https://docs.djangoproject.com/en/1.6/ref/contrib/admin/#modeladmin-options
 
-https://docs.djangoproject.com/en/1.6/ref/contrib/admin/#inlinemodeladmin-options
+    https://docs.djangoproject.com/en/1.6/ref/contrib/admin/#inlinemodeladmin-options
 
 Customize the admin look and feel
 ---------------------------------
