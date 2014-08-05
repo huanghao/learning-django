@@ -93,32 +93,71 @@ String representation
     >>> Poll.objects.all()
     [<Poll: What's up ?>]
 
-Selecting
+Creating
+
+    >>> p = Poll.objects.create(question="What's wrong ?", pub_date="2012-12-12T01:02:03Z")
+    >>> p.choice_set.create(choice_text='Not much', votes=0)
+    <Choice: Not much>
+    >>> p.choice_set.create(choice_text='The sky', votes=0)
+    <Choice: The sky>
+    >>> c = p.choice_set.create(choice_text='Just hacking again', votes=1)
+
+    >>> c.poll
+    <Poll: Poll object>
+    >>> p.choice_set.all()
+    [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
+    >>> p.choice_set.count()
+    3
+
+Reset data
 
     $ python manage.py flush
 
     $ python manage.py loaddata fixture.json
+    Installed 5 object(s) from 1 fixture(s)
 
-    all()
-    get()
-    filter()
+Selecting
 
-    order_by()
+    >>> Poll.objects.get(pk=2).choice_set.all()
+    [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
 
-    slicing[:]
+    >>> Poll.objects.get(pk=3)
+    Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+    DoesNotExist: Poll matching query does not exist.
+
+    >>> Choice.objects.filter(choice_text__startswith='Just')
+    [<Choice: Just hacking again>]
+
+    >>> Poll.objects.get(pk=2).choice_set.filter(votes=0).order_by('-choice_text')
+    [<Choice: The sky>, <Choice: Not much>]
+
+    >>> Poll.objects.get(pk=2).choice_set.filter(votes=0)[1:]
+    [<Choice: The sky>]
 
 Updating
 
-    get()
-    save()
+    Single
+    o = get()
+    o.attr = value
+    o.save()
 
-    filter().update()
+    Multiple
+    >>> Choice.objects.filter(poll__pk=2).update(poll=1)
+    3L
+    >>> Choice.objects.filter(poll__pk=2)
+    []
+    >>> Choice.objects.filter(poll__pk=1)
+    [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
 
 Deleting
 
-    get()
-    delete()
+    Single
+    o = get()
+    o.delete()
 
+    Multiple
     filter().delete()
 
+    All
     all().delete()
