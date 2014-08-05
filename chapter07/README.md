@@ -47,3 +47,36 @@ name
     {% url 'time_plus' 2 %}
 
     https://docs.djangoproject.com/en/1.6/ref/templates/builtins/#url
+
+
+Write views that actually do something
+--------------------------------------
+
+index()
+
+Template namespacing
+
+    BASE_DIR/polls/templates/polls/index.html
+
+    RequestContext vs Context
+    user, csrf ...
+    TEMPLATE_CONTEXT_PROCESSORS
+    https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext
+
+    A shortcut: render()
+
+detail()
+
+    Raise Http404 error
+
+    A shortcut: get_object_or_404()
+
+Removing Hardcoded URLs in templates
+
+    {% url 'detail' poll.pk %}
+
+Namespacing URL names
+
+    url(r'^polls/', include('polls.urls', namespace="polls")),
+
+    {% url 'polls:detail' poll.id %}
