@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Datetime testing</title>
+  </head>
+  <body>
+    <p>
+      It is now <strong>{{ now }}</strong> , {{ offset }}
+      {% if offset < 2 %}
+      hour
+      {% else %}
+      hours
+      {% endif %}
+      ahead is <strong>{{ dt }}</strong> !
+    </p>
+  </body>
+</html>
