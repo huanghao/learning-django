@@ -88,7 +88,37 @@ Basic accessing
 
 String representation
 
-    __unicode__()
+    __unicode__() method
 
     >>> Poll.objects.all()
     [<Poll: What's up ?>]
+
+Selecting
+
+    $ python manage.py flush
+
+    $ python manage.py loaddata fixture.json
+
+    all()
+    get()
+    filter()
+
+    order_by()
+
+    slicing[:]
+
+Updating
+
+    get()
+    save()
+
+    filter().update()
+
+Deleting
+
+    get()
+    delete()
+
+    filter().delete()
+
+    all().delete()
