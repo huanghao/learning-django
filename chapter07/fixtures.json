@@ -1,0 +1,44 @@
+[
+    {
+    "pk": 1,
+    "model": "polls.poll",
+    "fields": {
+        "pub_date": "2014-08-05T05:01:44Z",
+        "question": "What's up ?"
+        }
+    },
+    {
+    "pk": 2,
+    "model": "polls.poll",
+    "fields": {
+        "pub_date": "2014-08-05T06:19:12Z",
+        "question": "What's wrong ?"
+        }
+    },
+
+    {
+    "pk": 1, "model": "polls.choice",
+    "fields": {
+        "choice_text": "Not much",
+        "poll": 2,
+        "votes": 0
+        }
+    },
+    {
+    "pk": 2,
+    "model": "polls.choice",
+    "fields": {
+        "choice_text": "The sky",
+        "poll": 2,
+        "votes": 0
+        }
+    },
+    {
+    "pk": 3,
+    "model": "polls.choice",
+    "fields": {
+        "choice_text": "Just hacking again",
+        "poll": 2,
+        "votes": 1
+    }
+}]
