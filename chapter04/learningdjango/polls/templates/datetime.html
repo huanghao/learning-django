@@ -1,3 +1,4 @@
+{% load humanize %}
 <html>
   <head>
     <title>Datetime testing</title>
@@ -10,7 +11,7 @@
       {% else %}
       hours
       {% endif %}
-      ahead is <strong>{{ dt }}</strong> !
+      ahead is <strong>{{ dt|naturaltime }}</strong> !
     </p>
   </body>
 </html>
