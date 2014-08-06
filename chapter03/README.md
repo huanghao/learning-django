@@ -89,3 +89,9 @@ Django's pretty error pages
     stack trace
 
     environment
+
+HttpRequest
+-----------
+
+HttpResponse
+------------

@@ -7,6 +7,63 @@ Model definition
     models.py
     extends models.Model
     declare models.*Field
+    automatic primary key fields
+
+    https://docs.djangoproject.com/en/1.6/ref/models/fields/
+
+Field options
+
+    primay_key
+    db_index
+    unique
+
+    default
+
+    null (Default False)
+    blank (Default False)
+
+    blank is different than null. null is purely database-related,
+    whereas blank is validation-related.
+
+    If a field has blank=True, form validation will allow entry of
+    an empty value. If a field has blank=False, the field will be required.
+
+Field types
+
+    Auto: automatically be added to your model
+
+    Boolean
+    NullBoolean
+
+    Integer
+    BigInteger
+    PositiveInteger
+    PositiveSmallInteger
+    SmallInteger
+    CommaSeparatedInteger
+
+    Float
+    Decimal
+
+    Binary
+    Char
+    Text
+
+    Date
+    DateTime
+    Time
+
+    Email
+    URL
+    File
+    FilePath
+    Image
+    IPAddress
+    GenericIPAddress
+
+    ForeignKey
+    ManyToMany
+    OneToOne
 
 Activate database
 -----------------
@@ -161,3 +218,9 @@ Deleting
 
     All
     all().delete()
+
+Aggregation
+-----------
+
+Multiple databases
+------------------
