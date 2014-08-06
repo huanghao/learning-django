@@ -1,6 +1,13 @@
 Advanced Views and URLconfs
 ===========================
 
+Quick review
+------------
+
+    urls.py
+    mapping url pattern to view function
+
+
 Improved urls.py
 ----------------
 
