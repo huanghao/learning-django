@@ -17,41 +17,114 @@ Purpose
 
 Concepts
 
-    Form
+    Form: collection of fields that knows how validate itself and display itself as HTML
 
-    Field
+    Field: one item that can do validation
 
-    Widget
+    Widget: representation, eg. <input> or <textarea>
 
-    Form Assets (the Media class)
+    Form Assets (the Media class): css and js requires to render a form
 
 Form objects
 ------------
 
 Form definition syntax
 
+    ContactForm
+
 Using a form in a view
+
+    get: render a clean form with unbound form
+
+    post: bound data in order to do validation
 
 Processing the data from a form
 
+    is_valid()
+
+    cleaned_data
+
 Display a form using a template
 
+    {{ form }}
+
+Specify widget
+
+    comment = forms.CharField(widget=forms.Textarea)
+
 Customize the form template
+
+    Non-Field errors: {{ form.non_field_errors }}
+    Field errors: {{ form.subject.erros }}
+    Field: {{ form.subject }}
 
 Built-in fields
 ---------------
 
+    Similar with model fields
+
 Built-in widgets
 ----------------
+
+text
+
+    TextInput
+    NumberInput
+    EmailInput
+    URLInput
+    PasswordInput
+    HiddenInput
+    DateInput
+    DateTimeInput
+    TimeInput
+    TextArea
+
+selector and checkbox
+
+    CheckboxInput
+    Select
+    NullBooleanSelect
+    SelectMulti
+    RadioSelect
+    CheckboxSelectMultiple
+
+file upload
+
+    FileInput
+    ClearableFileInput
 
 Model form
 ----------
 
+    definition
+
+    save()
+
 Customizing validation
 ----------------------
 
-Formset??
----------
+clean_<xxfield> method
 
-Form assets??
--------------
+cleaned_data
+
+raise django.forms.ValidationError
+
+clean() method
+
+Form assets
+-----------
+
+When this widget is rendering, stylesheet and javascript links will be automatically included.
+
+    class CalendarWidget(forms.TextInput):
+        class Media:
+            css = {
+                'all': ('pretty.css',)
+            }
+            js = ('animations.js', 'actions.js')
+
+    >>> w = CalendarWidget()
+    >>> print(w.media)
+    <link href="/static/pretty.css" type="text/css" media="all" rel="stylesheet" />
+    <script type="text/javascript" src="/static/animations.js"></script>
+    <script type="text/javascript" src="/static/actions.js"></script>
