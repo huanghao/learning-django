@@ -93,5 +93,59 @@ Django's pretty error pages
 HttpRequest
 -----------
 
+Attributes (not complete)
+
+    body: raw HTTP body as byte string
+    path
+    method
+    encoding
+
+    GET
+    POST
+    REQUEST: POST or GET
+    COOKIES
+    FILES
+    META
+        - CONTENT_LENGTH
+        - CONTENT_TYPE
+        - HTTP_HOST
+        - HTTP_REFERER
+        - HTTP_USER_AGENT
+        - REMOTE_ADDR
+        - REMOTE_HOST
+
+    user
+    session
+
 HttpResponse
 ------------
+
+__init__
+
+    content=''
+    content_type
+    status=200
+    reason
+
+Methods (not complete)
+
+    set_cookie()
+    delete_cookie()
+    tell()
+    write()
+
+Subclasses
+
+    302: HttpResponseRedirect
+    301: HttpResponsePermanentRedirect
+    304: HttpResponseNotModified    
+
+    400: HttpResponseBadRequest
+    404: HttpResponseNotFound
+    403: HttpResponseForbidden
+    405: HttpResponseNotAllowed
+    410: HttpResponseGone
+
+    500: HttpResponseServerError
+
+    StreamingHttpResponse
