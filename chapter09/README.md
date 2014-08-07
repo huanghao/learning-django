@@ -107,7 +107,8 @@ Extra method of RelatedManager
     - remove(obj1[, obj2, ...])
 
     for foreign key objects, this method only exists if null = True
-    removing c from p.choice_set if equivalent to set c.poll to None, which is invalid if poll field doesn't have null = True.
+    removing c from p.choice_set if equivalent to set c.poll to None,
+    which is invalid if poll field doesn't have null = True.
 
     - clear()
 
@@ -132,8 +133,9 @@ select_related()
 
 prefetch_related()
 
-    select_related use sql join
-    prefecth_related does a separate lookup for each relationship, and does the "joining" in python. for many to many
+    select_related use sql join. However prefecth_related does a
+    separate lookup for each relationship, and does the "joining"
+    in python. It can be used for many to many relationship.
 
     Book.objects.all().prefetch_related('authors')
 
@@ -162,7 +164,8 @@ Three styles of inheritance
 
 Abstract base classes
 
-    There isn't table for CommonInfo. It can't be instantiated or saved directly. All fields from base model are stored in children tables.
+    There isn't table for CommonInfo. It can't be instantiated or saved
+    directly. All fields from base model are stored in children tables.
 
     mysql> desc inherit_student;
     +------------+------------------+------+-----+---------+----------------+
@@ -190,7 +193,8 @@ Multi-table inheritance
 
     Both models can be used normally.
 
-    The inheritance relationship introduces links between the child and each of its parents (via an automatically-created OneToOneField).
+    The inheritance relationship introduces links between the child and
+    each of its parents (via an automatically-created OneToOneField).
 
     mysql> desc inherit_place;
     +---------+-------------+------+-----+---------+----------------+
@@ -229,18 +233,104 @@ Multi-table inheritance
     >>> Place.objects.all()[2].office
     <Office: GTC:Office>
 
-
 Proxy models
 
-Multiple inheritance
+    Sometime, you don't need a new table for child model and only want
+    to change the Python behavior of a model - perhaps to change the
+    default manager, or add a new method.
 
-Field name “hiding” is not permitted
+    It's useful if you want to change the behavior of models defined
+    by some library whose code you can change.
+
+    >>> MyUser.objects.all()
+    [<MyUser: admin>]
+    >>> MyUser.objects.all()[0].full_name
+    u'Hao, Huang'
 
 Migration
 ---------
 
 South
 
+    http://south.readthedocs.org/en/latest/index.html
+
+    It will be included in Django 1.7
+
+    pip install South
+
+    add 'south' in INSTALLED_APPS
+
+    $ python manage.py help
+    [south]
+        convert_to_south
+        datamigration
+        graphmigrations
+        migrate
+        migrationcheck
+        schemamigration
+        startmigration
+        syncdb
+        test
+        testserver
+
 Schema migration
 
+    class Knight(models.Model):
+        name = models.CharField(max_length=100)
+        of_the_round_table = models.BooleanField()
+
+    $ ./manage.py schemamigration knight --initial
+    Creating migrations directory at '.../learningdjango/knight/migrations'...
+    Creating __init__.py in '.../learningdjango/knight/migrations'...
+     + Added model knight.Knight
+    Created 0001_initial.py. You can now apply this migration with: ./manage.py migrate knight
+
+    $ ./manage.py migrate knight
+    Running migrations for knight:
+     - Migrating forwards to 0001_initial.
+     > knight:0001_initial
+     - Loading initial data for knight.
+    Installed 0 object(s) from 0 fixture(s)
+
+
+    class Knight(models.Model):
+        name = models.CharField(max_length=100)
+        of_the_round_table = models.BooleanField()
+        dances_whenever_able = models.BooleanField()
+
+    $ ./manage.py schemamigration knight --auto
+     + Added field dances_whenever_able on knight.Knight
+    Created 0002_auto__add_field_knight_dances_whenever_able.py. You can now apply this migration with: ./manage.py migrate knight
+
+
+    $ ./manage.py migrate --list
+     knight
+      (*) 0001_initial
+      ( ) 0002_auto__add_field_knight_dances_whenever_able
+
+    $ ./manage.py migrate knight
+    Running migrations for knight:
+     - Migrating forwards to 0002_auto__add_field_knight_dances_whenever_able.
+     > knight:0002_auto__add_field_knight_dances_whenever_able
+     - Loading initial data for knight.
+    Installed 0 object(s) from 0 fixture(s)
+
+    mysql> desc knight_knight;
+    +----------------------+--------------+------+-----+---------+----------------+
+    | Field                | Type         | Null | Key | Default | Extra          |
+    +----------------------+--------------+------+-----+---------+----------------+
+    | id                   | int(11)      | NO   | PRI | NULL    | auto_increment |
+    | name                 | varchar(100) | NO   |     | NULL    |                |
+    | of_the_round_table   | tinyint(1)   | NO   |     | NULL    |                |
+    | dances_whenever_able | tinyint(1)   | NO   |     | NULL    |                |
+    +----------------------+--------------+------+-----+---------+----------------+
+
+
 Data migration
+
+    $ ./manage.py datamigration knight promote
+    Created 0003_promote.py.
+
+    $ vim 0003_promote.py
+
+    Write your forwards() and backwards() functions

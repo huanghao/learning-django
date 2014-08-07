@@ -35,3 +35,13 @@ class Office(Place):
 
 
 # Proxy
+
+from django.contrib.auth.models import User
+
+class MyUser(User):
+    class Meta:
+        proxy = True
+
+    @property
+    def full_name(self):
+        return '%s, %s' % (self.first_name, self.last_name)
