@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'polls',
+    'books',
+    'inherit',
 )
 
 MIDDLEWARE_CLASSES = (

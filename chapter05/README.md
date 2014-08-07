@@ -219,6 +219,9 @@ Deleting
     All
     all().delete()
 
+Manager
+-------
+
 Aggregation
 -----------
 
