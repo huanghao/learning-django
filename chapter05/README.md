@@ -8,6 +8,7 @@ Model definition
     extends models.Model
     declare models.*Field
     automatic primary key fields
+    objects: django.db.models.manager.Manager
 
     https://docs.djangoproject.com/en/1.6/ref/models/fields/
 
@@ -107,10 +108,8 @@ $ python manage.py flush -h
 $ python manage.py dumpdata -h
 
 
-Play with the API
------------------
-
 Django shell
+------------
 
     $ python manage.py shell
     >>> from polls.models import Poll, Choice
@@ -120,6 +119,7 @@ Bypassing manage.py
     Set DJANGO_SETTINGS_MODULE env to "learningdjango.settings"
 
 Basic accessing
+---------------
 
     >>> Poll.objects.all()
     []
@@ -144,6 +144,7 @@ Basic accessing
     [<Poll: Poll object>]
 
 String representation
+---------------------
 
     __unicode__() method
 
@@ -151,6 +152,7 @@ String representation
     [<Poll: What's up ?>]
 
 Creating
+--------
 
     >>> p = Poll.objects.create(question="What's wrong ?", pub_date="2012-12-12T01:02:03Z")
     >>> p.choice_set.create(choice_text='Not much', votes=0)
@@ -167,6 +169,7 @@ Creating
     3
 
 Reset data
+----------
 
     $ python manage.py flush
 
@@ -174,6 +177,7 @@ Reset data
     Installed 5 object(s) from 1 fixture(s)
 
 Selecting
+---------
 
     >>> Poll.objects.get(pk=2).choice_set.all()
     [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
@@ -193,13 +197,16 @@ Selecting
     [<Choice: The sky>]
 
 Updating
+--------
 
-    Single
+Single
+
     o = get()
     o.attr = value
     o.save()
 
-    Multiple
+Multiple
+
     >>> Choice.objects.filter(poll__pk=2).update(poll=1)
     3L
     >>> Choice.objects.filter(poll__pk=2)
@@ -208,22 +215,100 @@ Updating
     [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]
 
 Deleting
+--------
 
-    Single
+Single
+
     o = get()
     o.delete()
 
-    Multiple
+Multiple
+
     filter().delete()
 
-    All
-    all().delete()
+All
 
-Manager
--------
+    all().delete()
 
 Aggregation
 -----------
 
+Over a QuerySet
+
+    >>> Poll.objects.count()
+    2
+    >>> Poll.objects.filter(question__contains='up').count()
+    1
+    
+    >>> from django.db.models import Avg
+    >>> Poll.objects.get(pk=1).choice_set.aggregate(Avg('votes'))
+    {'votes__avg': 0.3333}
+
+    >>> from django.db.models import Max
+    >>> Choice.objects.aggregate(Max('votes'), Avg('votes'))
+    {'votes__max': 1, 'votes__avg': 0.25}
+
+For each item in a QuerySet
+
+    >>> q = Poll.objects.annotate(Count('choice'))
+    >>> print q
+    [<Poll: Poll object>, <Poll: Poll object>]
+    >>> q[0].choice__count
+    3
+    >>> q[1].choice__count
+    1
+
+    How to use GROUP BY ?
+    http://stackoverflow.com/questions/629551/how-to-query-as-group-by-in-django
+
 Multiple databases
 ------------------
+
+Master-Slaves
+
+    DATABASES = {
+        'auth_db': {
+            'NAME': 'auth_db',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'mysql_user',
+            'PASSWORD': 'swordfish',
+        },
+        'master': {
+            'NAME': 'master',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'mysql_user',
+            'PASSWORD': 'spam',
+        },
+        'slave1': {
+            'NAME': 'slave1',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'mysql_user',
+            'PASSWORD': 'eggs',
+        },
+        'slave2': {
+            'NAME': 'slave2',
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'mysql_user',
+            'PASSWORD': 'bacon',
+        },
+    }
+
+Database routers
+
+    DATABASE_ROUTERS = ['path.to.AuthRouter', 'path.to.MasterSlaveRouter']
+
+    db_for_read(model)
+    db_for_write(model)
+
+    - AuthRouter
+
+    if model._meta.app_label == 'auth':
+        return 'auth_db'
+
+    - MasterSlaveRouter
+
+    return random.choice(['slave1', 'slave2'])
+
+    return 'master'
+
+https://docs.djangoproject.com/en/1.6/topics/db/multi-db/
