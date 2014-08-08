@@ -1,0 +1,14 @@
+<div class="row">
+  <p> 
+   <span class="pull-right">
+      Hi <em>{{ user }}</em> !
+      &nbsp;&nbsp;
+
+      <a href="{% url 'password_change' %}">
+        Change password</a>
+      /
+      <a href="{% url 'logout' %}">
+        Logout</a>
+    </span>
+  </p>
+</div>
