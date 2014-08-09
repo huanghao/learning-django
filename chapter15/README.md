@@ -44,15 +44,40 @@ Hooks and application order
 
 ![middleware.svg](https://docs.djangoproject.com/en/1.6/_images/middleware.svg)
 
-process_request
+process_request(request)
 
-process_view
+    It should return None or an HttpResponse object.
 
-process_exception
+process_view(request, view_function, view_args, view_kwargs)
 
-process_template_response
+    It should return None or an HttpResponse object.
 
-process_response
+process_template_response(request, response)
+
+    process_template_response() is called just after the view has
+    finished executing, if the response instance has a render()
+    method, indicating that it is a TemplateResponse or equivalent.
+
+    It must return a response object that implements a render method.
+
+process_response(request, response)
+
+    Unlike the process_request() and process_view() methods, the
+    process_response() method is always called, even if the
+    process_request() and process_view() methods of the same middleware
+    class were skipped (because an earlier middleware method returned an
+    HttpResponse). In particular, this means that your process_response()
+    method cannot rely on setup done in process_request().
+
+    Finally, remember that during the response phase, middleware are
+    applied in reverse order, from the bottom up. This means classes
+    defined at the end of MIDDLEWARE_CLASSES will be run first.
+
+process_exception(request, exception)
+
+     when a view raises an exception.
+
+     return either None or an HttpResponse object.
 
 Example
 -------
