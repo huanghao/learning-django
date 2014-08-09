@@ -6,8 +6,9 @@ output of *specific views*, you can cache only *the pieces that are difficult
 to produce*, or you can cache your *entire site*.
 
 Backends
+--------
 
-- Memcached
+Memcached
 
     CACHES = {
         'default': {
@@ -20,7 +21,7 @@ Backends
         }
     }
 
-- Database
+Database
 
     $ python manage.py createcachetable [cache_table_name]
 
@@ -31,7 +32,7 @@ Backends
         }
     }
 
-- Filesystem
+Filesystem
 
     CACHES = {
         'default': {
@@ -40,7 +41,7 @@ Backends
         }
     }
 
-- Local-memory
+Local-memory
 
     CACHES = {
         'default': {
@@ -57,7 +58,7 @@ Backends
     probably not a good choice for production environments. It’s nice for
     development.
 
-- Dummy (for development)
+Dummy (for development)
 
     CACHES = {
         'default': {
