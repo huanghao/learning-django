@@ -18,6 +18,8 @@ TOC
 Setup
 -----
 
+    $ apt-get install mysql-server memcached
+
     $ virtualenv .
     $ pip install -r requirements.txt
 
