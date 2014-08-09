@@ -13,7 +13,13 @@ TOC
     08 - Advanced Templates
     09 - Advanced Models
     10 - Forms
-    11 - The development process
+    11 - Deploying Django
+    12 - Sessions, User, and Registration
+    13 - Caching
+    14 - django.contrib
+    15 - Middleware
+    16 - Security
+    17 - Testing
 
 Setup
 -----

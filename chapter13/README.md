@@ -191,3 +191,10 @@ Basic usage
     be atomic.
 
     >>> cache.close()
+
+Example
+-------
+
+    syncdb
+    create cache table
+    select * from caches
