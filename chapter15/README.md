@@ -31,13 +31,19 @@ CSRF protection middleware
 Other built-in middlewares
 --------------------------
 
-GZip middleware
+GZip middleware: Compresses content for browsers that understand GZip.
 
 Conditional GET middleware
 
-Locale middleware
+    If the response has a *ETag* or *Last-Modified* header, and the
+    request has *If-None-Match* or *If-Modified-Since*, the response
+    is replaced by an HttpResponseNotModified.
 
-X-Frame-Options middleware
+    Also sets the Date and Content-Length response-headers.
+
+Locale middleware: Enables language selection based on data from the request.
+
+X-Frame-Options middleware: Clickjacking Protection
 
 Hooks and application order
 ---------------------------
