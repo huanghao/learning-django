@@ -54,3 +54,6 @@ LiveServerTestCase
     dummy client such as, for example, the Selenium client, to execute a
     series of functional tests inside a browser and simulate a real user’s
     actions.
+
+    xvfb: Headless X server
+    phantomjs.org: Headless WebKit with Javascript API
