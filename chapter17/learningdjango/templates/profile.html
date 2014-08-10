@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Welcome !</h1>
+
+{% if perms.foo.bar %}
+<h3>:) Gotcha</h3>
+{% endif %}
+
+{% endblock %}

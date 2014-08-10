@@ -2,3 +2,4 @@ Django
 MySQL-python
 South
 Celery
+Selenium
