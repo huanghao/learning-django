@@ -1,5 +1,5 @@
-Django
 MySQL-python
+Django
 South
 Celery
 Selenium
