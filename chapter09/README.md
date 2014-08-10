@@ -87,8 +87,6 @@ One to one:
 
     - related_name: the lower-case name of the current model as default value
 
-    - parent_link: discuss later in model inheritance
-
 Extra method of RelatedManager
 
     - add(obj1[, obj2, ...])
