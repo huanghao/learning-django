@@ -20,6 +20,7 @@ TOC
     15 - Middleware
     16 - Security
     17 - Testing
+    18 - Must-have Django plug-ins
 
 Setup
 -----
