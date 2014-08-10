@@ -48,3 +48,12 @@ Must-have Django plug-ins
 
 - [Django extensions](http://django-extensions.readthedocs.org/en/latest/)
 
+- [Selenium](http://www.seleniumhq.org/)
+
+
+References
+----------
+
+1. [Must-have Django packages](https://devcharm.com/articles/79/must-have-django-packages/)
+1. [Django packages](https://www.djangopackages.com/)
+1. [33 projects that make developing django apps awesome](http://elweb.co/33-projects-that-make-developing-django-apps-awesome/)
