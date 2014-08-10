@@ -20,15 +20,21 @@ class WebTest(LiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.selenium = WebDriver()
-        super(MySeleniumTests, cls).setUpClass()
+        cls.driver = WebDriver()
+        super(WebTest, cls).setUpClass()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
+        super(WebTest, cls).tearDownClass()
 
     def test_login(self):
-        self.selenium.get('%s%s' % (self.live_server_url, '/accounts/login/'))
+        dr = self.driver
+        dr.get('%s%s' % (self.live_server_url, '/accounts/login/'))
 
-        username_input = self.selenium.find_element_by_name("username")
+        username_input = dr.find_element_by_name("username")
         username_input.send_keys('admin')
-        password_input = self.selenium.find_element_by_name("password")
+        password_input = dr.find_element_by_name("password")
         password_input.send_keys('admin')
 
-        self.selenium.find_element_by_xpath('//input[@value="Login"]').click()
+        dr.find_element_by_xpath('//input[@value="Login"]').click()
