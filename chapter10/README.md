@@ -10,7 +10,7 @@ Purpose
 
     2. Check submitted data against a set of validation rules.
 
-    3. Redisplay a form in the case of validation errors.
+    3. Re-display a form in the case of validation errors.
 
     4. Convert submitted form data to the relevant Python data types.
 

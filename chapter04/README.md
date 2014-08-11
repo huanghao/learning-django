@@ -6,7 +6,7 @@ Using template in hours_ahead() view
 
     mkdir templates/
 
-    Django searches templates/ subdirectory in each of INSTALLED_APPS
+    Django searches templates/ sub-directory in each of INSTALLED_APPS
 
     settings.TEMPLATE_DIRS
 
@@ -20,10 +20,10 @@ Variables
     {{ variable }}
 
     {{ var.attr }}
-    Dictionary lookup
-    Attribute lookup
+    Dictionary look up
+    Attribute look up
     Method call
-    List-index lookup
+    List-index look up
 
     settings.TEMPLATE_STRING_IF_INVALID
     '' by default

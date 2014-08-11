@@ -72,7 +72,7 @@ Settings
 Users and Authentication
 ------------------------
 
-Sessions could be used for user login.
+Sessions could be used for user log-in.
 
 auth/auth system
 
@@ -139,7 +139,7 @@ Methods
     - get_and_delete_messages()
     - email_user(subj, msg)
 
-Many to many fileds
+Many to many fields
 
     - groups
     - permissions
@@ -196,9 +196,9 @@ Limiting access to logged-in users
 Authentication views
 --------------------
 
-Django provides serveral views that can handle login, logout and password management.
+Django provides several views that can handle login, logout and password management.
 
-Django provices no default template for those views
+Django provides no default template for those views
 
 Example:
 

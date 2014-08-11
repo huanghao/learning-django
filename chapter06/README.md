@@ -10,7 +10,7 @@ How to
     INSTALLED_APPS
     MIDDLEWARE_CLASSES
 
-Login
+Log in
 
     Create user while syncdb
 

@@ -1,4 +1,4 @@
-Advanced Views and URLconfs
+Advanced Views and URLConfs
 ===========================
 
 Quick review
@@ -78,7 +78,7 @@ detail()
 
     A shortcut: get_object_or_404()
 
-Removing Hardcoded URLs in templates
+Removing hardcoded URLs in templates
 
     {% url 'detail' poll.pk %}
 

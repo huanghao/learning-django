@@ -30,7 +30,7 @@ Environment-specific settings
 
     ALLOWED_HOSTS
 
-        Reqeust.Host
+        Request.Host
         ['*']
         ['.intel.com']
 
@@ -64,7 +64,7 @@ Error reporting
 
 Customize the default error views
 
-    In your templates root direcotry
+    In your templates root directory
 
     404.html (page not found)
     500.html (server error)
@@ -92,7 +92,7 @@ Ansible technology
 
 * SSH
 
-* Ansible moudle library
+* Ansible module library
 
 * Django manage.py commands module
 

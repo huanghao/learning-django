@@ -14,7 +14,7 @@ Model definition
 
 Field options
 
-    primay_key
+    primary_key
     db_index
     unique
 

@@ -1,7 +1,7 @@
 Must-have Django plug-ins
 =========================
 
-Seach on pypi
+Search on pypi
 -------------
 
 https://pypi.python.org/pypi?%3Aaction=search&term=django&submit=search
@@ -59,10 +59,10 @@ Very famous packages
 Best practices
 --------------
 
-Principe
+Principle
 
 - PEP20 -- [The Zen of Python](http://legacy.python.org/dev/peps/pep-0020/)
-- DRY principe -- [Dont Repeat Yourself](http://c2.com/cgi/wiki?DontRepeatYourself)
+- DRY principle -- [Dont Repeat Yourself](http://c2.com/cgi/wiki?DontRepeatYourself)
 - [Django Design philosophies](https://docs.djangoproject.com/en/dev/misc/design-philosophies/)
 
 Code style

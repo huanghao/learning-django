@@ -134,7 +134,7 @@ Methods (not complete)
     tell()
     write()
 
-Subclasses
+Sub-classes
 
     302: HttpResponseRedirect
     301: HttpResponsePermanentRedirect
