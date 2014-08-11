@@ -22,6 +22,15 @@ TOC
     17 - Testing
     18 - Must-have Django plug-ins
 
+Prerequisites
+-------------
+
+    A working knowledge of Python is assumed
+
+    Some basic experience with Web development
+
+    Basic knowledge about gnu/linux usage
+
 Setup
 -----
 
