@@ -1,5 +1,5 @@
-Middleware
-==========
+Middleware & Signals
+====================
 
 Middleware is a framework of hooks into Django’s request/response
 processing. It’s a light, low-level “plugin” system for globally
@@ -91,3 +91,73 @@ Example
 SignCheckMiddleware
 
 JsonResponseMiddleware
+
+Signals
+-------
+
+Signals allow certain *senders* to notify a set of *receivers* that some action has taken place.
+
+Interfaces:
+
+- receiver
+
+    def my_callback(sender, **kwargs):
+        print("Request finished!")
+
+- connect
+
+    from django.core.signals import request_finished
+    request_finished.connect(my_callback)
+
+- disconnect
+
+    request_finished.disconnect(my_callback)
+
+- send: Normally, this function is called by Django itself.
+
+    class PizzaStore(object):
+        ...
+        def send_pizza(self, toppings, size):
+            pizza_done.send(sender=self.__class__, toppings=toppings, size=size)
+
+
+Built-in signals
+----------------
+
+Model signals
+
+- pre_init
+
+    p = Poll(question="What's up?", pub_date=datetime.now())
+
+    - sender  Poll (the class itself)
+    - args    [] (an empty list because there were no positional arguments passed to __init__().)
+    - kwargs  {'question': "What's up?", 'pub_date': datetime.now()}
+
+- post_init
+- pre_save
+- post_save
+- pre_delete
+- post_delete
+- m2m_changed
+- class_prepared
+
+Management signals
+
+- pre_syncdb
+- post_syncdb
+
+Request/response signals
+
+- request_started
+- request_finished
+- got_request_exception
+
+Test signals
+
+- settings_changed
+- template_rendered
+
+Database wrappers
+
+- connection_created
