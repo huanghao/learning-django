@@ -146,6 +146,32 @@ prefetch_related()
 Meta options
 ------------
 
+abstract: ABC (see "Model inheritance" below)
+
+app_label: if a model exists outside of the standard models.py
+
+db_table: the name of the database table to use for the model
+
+ordering: the default ordering for the object
+
+    ordering = ['-pub_date', 'author']
+
+permissions: extra permissions to enter into the permissions table when creating this object
+
+    permissions = (("can_deliver_pizzas", "Can deliver pizzas"),)
+
+proxy: proxy model (see "Model inheritance" below)
+
+unique_together: sets of field names that, taken together, must be unique
+
+    unique_together = (("driver", "restaurant"),)
+
+index_together: sets of field names that, take together, are indexed
+
+verbose_name: a human-readable name for the object, singular
+
+verbose_name_plural: the plural name for the object
+
 Model inheritance
 -----------------
 
