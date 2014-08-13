@@ -1,6 +1,17 @@
 Models
 ======
 
+Setup Database
+--------------
+
+    Database configuration
+
+    $ mysql -uroot -e 'create database learningdjango default character set utf8'
+
+    $ python manage.py syncdb
+
+    $ python manage.py dbshell
+
 Model definition
 ----------------
 

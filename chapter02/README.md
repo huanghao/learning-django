@@ -6,6 +6,12 @@ Start project
 
     $ django-admin.py startproject learningdjango
 
+Django convention
+
+- Files & Directories layout
+- settings
+- manage.py
+
 Run server
 ----------
 
@@ -19,20 +25,30 @@ Open a page
 
     Open http://localhost:8000 in browser
 
-Setup Database
---------------
-
-    Database configuration
-
-    $ mysql -uroot -e 'create database learningdjango default character set utf8'
-
-    $ python manage.py syncdb
-
-    $ python manage.py dbshell
-
 Manage.py
 ---------
 
     $ python manage.py shell
 
     $ python manage.py help
+
+Start an application
+--------------------
+
+Project vs. application
+
+MVC
+
+- Model: domain
+- View: presentation
+- Controller: interaction
+
+MTV
+
+Django considers the framework (itself) to be the controller
+
+https://docs.djangoproject.com/en/1.6/faq/general/#django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names
+
+- Model: fat
+- Template: stupid
+- View: thin
